@@ -84,10 +84,10 @@
         <button type="submit">Enviar</button>
     </form>
     <hr>
-    {% for nome, recado, data in recados %}
+    {% for nome, recado, created_at in recados %}
         <div class="recado">
             <strong>{{ nome }}</strong><br>
-            <small class="timestamp" data-datetime="{{ data.isoformat() }}"></small><br>
+            <small class="timestamp" data-datetime="{{ created_at.isoformat() }}"></small><br>
             {{ recado }}
         </div>
     {% endfor %}
