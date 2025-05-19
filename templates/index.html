@@ -35,6 +35,7 @@
             border-radius: 5px;
             background-color: #2a2a2a;
             color: #e0e0e0;
+            box-sizing: border-box;
         }
 
         input::placeholder,
@@ -86,9 +87,25 @@
     {% for nome, recado, data in recados %}
         <div class="recado">
             <strong>{{ nome }}</strong><br>
-            <small style="color:#aaa;">{{ data.strftime("%d/%m/%Y %H:%M") }}</small><br>
+            <small class="timestamp" data-datetime="{{ data.isoformat() }}"></small><br>
             {{ recado }}
         </div>
     {% endfor %}
 </body>
 </html>
+<script>
+    const options = {
+        timeZone: 'America/Sao_Paulo',
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+
+    document.querySelectorAll('.timestamp').forEach(elem => {
+        const isoString = elem.dataset.datetime;
+        const date = new Date(isoString);
+        elem.textContent = date.toLocaleString('pt-BR', options).replace(',', ' às');
+    });
+</script>
