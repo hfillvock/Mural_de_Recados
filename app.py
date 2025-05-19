@@ -19,7 +19,7 @@ def get_db_connection():
 def index():
     db = get_db_connection()
     cursor = db.cursor()
-    cursor.execute("SELECT name, message FROM recados ORDER BY id DESC")
+    cursor.execute("SELECT name, message, created_at FROM recados ORDER BY id DESC")
     recados = cursor.fetchall()
     cursor.close()
     db.close()
