@@ -1,9 +1,12 @@
 import os
-from flask import Flask, render_template, request, redirect
 import mysql.connector
+import locale
+from flask import Flask, render_template, request, redirect
 from urllib.parse import urlparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
+locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 
 app = Flask(__name__)
 
