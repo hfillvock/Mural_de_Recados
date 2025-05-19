@@ -1,12 +1,10 @@
 import os
 import mysql.connector
-import locale
 from flask import Flask, render_template, request, redirect
 from urllib.parse import urlparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
-
-locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+from babel.dates import format_datetime
 
 app = Flask(__name__)
 
@@ -34,7 +32,7 @@ def index():
         if data.tzinfo is None:
             data = data.replace(tzinfo=ZoneInfo("UTC"))
         data_br = data.astimezone(ZoneInfo("America/Sao_Paulo"))
-        data_formatada = data_br.strftime("%d de %B de %Y às %H:%M")
+        data_formatada = format_datetime(data_br, "d 'de' MMMM 'de' y 'às' HH:mm", locale='pt_BR')
         recados.append((nome, recado, data_formatada))
 
     return render_template('index.html', recados=recados)
