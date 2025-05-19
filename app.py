@@ -2,6 +2,8 @@ import os
 from flask import Flask, render_template, request, redirect
 import mysql.connector
 from urllib.parse import urlparse
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 app = Flask(__name__)
 
@@ -20,9 +22,18 @@ def index():
     db = get_db_connection()
     cursor = db.cursor()
     cursor.execute("SELECT name, message, created_at FROM recados ORDER BY id DESC")
-    recados = cursor.fetchall()
+    rows = cursor.fetchall()
     cursor.close()
     db.close()
+
+    recados = []
+    for nome, recado, data in rows:
+        if data.tzinfo is None:
+            data = data.replace(tzinfo=ZoneInfo("UTC"))
+        data_br = data.astimezone(ZoneInfo("America/Sao_Paulo"))
+        data_formatada = data_br.strftime("%d de %B de %Y às %H:%M")
+        recados.append((nome, recado, data_formatada))
+
     return render_template('index.html', recados=recados)
 
 @app.route('/send', methods=['POST'])

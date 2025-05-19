@@ -84,28 +84,13 @@
         <button type="submit">Enviar</button>
     </form>
     <hr>
-    {% for nome, recado, created_at in recados %}
+    {% for nome, recado, data in recados %}
         <div class="recado">
             <strong>{{ nome }}</strong><br>
-            <small class="timestamp" data-datetime="{{ created_at.isoformat() }}"></small><br>
+            <small style="color:#aaa;">{{ data }}</small><br>
             {{ recado }}
         </div>
     {% endfor %}
 </body>
 </html>
 <script>
-    const options = {
-        timeZone: 'America/Sao_Paulo',
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-
-    document.querySelectorAll('.timestamp').forEach(elem => {
-        const isoString = elem.dataset.datetime;
-        const date = new Date(isoString);
-        elem.textContent = date.toLocaleString('pt-BR', options).replace(',', ' às');
-    });
-</script>
