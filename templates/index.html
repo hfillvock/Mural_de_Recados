@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Mural de Recados</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .recado { border-bottom: 1px solid #ccc; margin-bottom: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Mural de Recados</h1>
+    <form action="/send" method="POST">
+        <input type="text" name="name" placeholder="Seu nome" required><br>
+        <textarea name="message" placeholder="Seu recado" required></textarea><br>
+        <button type="submit">Enviar</button>
+    </form>
+    <hr>
+    {% for nome, recado in recados %}
+        <div class="recado">
+            <strong>{{ nome }}</strong>: {{ recado }}
+        </div>
+    {% endfor %}
+</body>
+</html>
