@@ -14,7 +14,6 @@ app.secret_key = os.environ.get('SECRET_KEY') or 'your-secret-key-here'
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-os.environ["MYSQL_URL"] = "mysql://root:negativo@localhost:3306/mural"
 
 def get_db_connection():
     url = urlparse(os.environ.get("MYSQL_URL"))
