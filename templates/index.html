@@ -2,6 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Mural de Recados</title>
     <style>
         body {
@@ -74,23 +76,57 @@
             border-top: 1px solid #333;
             margin: 20px 0;
         }
+
+        .alert {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .alert-error {
+            color: #721c24;
+            background-color: #f8d7da;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+        }
+
+        .timestamp {
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
     <h1>Mural de Recados</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
     <form action="/send" method="POST">
-        <input type="text" name="name" placeholder="Seu nome" required>
-        <textarea name="message" placeholder="Seu recado" required></textarea>
+        <input type="text" name="name" placeholder="Seu nome" required maxlength="100">
+        <textarea name="message" placeholder="Seu recado" required maxlength="2000"></textarea>
         <button type="submit">Enviar</button>
     </form>
+    
     <hr>
+    
     {% for nome, recado, data in recados %}
         <div class="recado">
             <strong>{{ nome }}</strong><br>
             <small style="color:#aaa;">{{ data }}</small><br>
-            {{ recado }}
+            {{ recado|safe }}
         </div>
     {% endfor %}
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
 </body>
 </html>
-<script>
