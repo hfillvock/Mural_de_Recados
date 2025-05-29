@@ -4,57 +4,80 @@ theme: gaia
 class: invert
 ---
 
-# Capa
+<!-- _class: lead -->
+# 📝 Mural de Recados
+## Aplicação Web Distribuída
 
-<!--Text--> Adicionar capa.
+**Desenvolvido com arquitetura moderna e escalável**
+
+*Programação Distribuída - 2025*
 
 ---
 
-## Introdução
+## 🎯 Visão Geral
 
-O **Mural de Recados** é uma aplicação web simples e interativa, que permite aos usuários enviar mensagens públicas, exibidas em um mural online.
+O **Mural de Recados** é uma aplicação web interativa que permite aos usuários enviar e visualizar mensagens públicas em tempo real.
+
+**Características principais:**
+- Interface simples e intuitiva
+- Mensagens públicas instantâneas
+- Arquitetura distribuída robusta
 
 <!--Text--> Adicionar imagem do site.
 
 ---
 
-## Premissas de Sistemas Distribuídos
+## 🏗️ Premissas de Sistemas Distribuídos
 
-- **Transparência**: armazenamento invisível ao usuário final.
+<small>
 
-- **Escalabilidade**: crescimento automático (Railway) e replicação futura (MySQL).
+**🔍 Transparência**
+Armazenamento invisível ao usuário final
 
-- **Confiabilidade**: consistência (MySQL) e monitoramento contínuo (Railway).
+**📈 Escalabilidade** 
+Crescimento automático (Railway) + replicação futura (MySQL)
 
-- **Disponibilidade**: alta disponibilidade e resposta contínua (Railway).
+**🛡️ Confiabilidade**
+Consistência de dados (MySQL) + monitoramento contínuo
 
-- **Desempenho**: leveza e otimização de consultas.
+**⚡ Disponibilidade**
+Alta disponibilidade com resposta contínua
 
----
+**🚀 Desempenho**
+Interface otimizada e consultas eficientes
 
-## Railway
-
-* Moderno.
-
-* Deploy simplificado.
-
-* SSL gratuito.
-
-* Escalabilidade automática.
+</small>
 
 ---
 
-## Benefícios da Solução
+## 🚂 Railway: Plataforma Moderna
 
-* Deploy contínuo via GitHub.
+**Por que Railway?**
 
-* SSL e HTTPS integrados (segurança na transmissão).
-
-* Infraestrutura gerenciada automaticamente.
-
-* Logs em tempo real e monitoramento de erros.
+✨ **Deploy simplificado** - CI/CD automático  
+🔒 **SSL gratuito** - Segurança nativa  
+📊 **Escalabilidade automática** - Sem configuração manual  
+🎯 **Foco no desenvolvimento** - Menos infraestrutura
 
 ---
+
+## 💡 Benefícios da Solução
+
+**🔄 Integração Contínua**
+Deploy automático via GitHub
+
+**🔐 Segurança Integrada**
+SSL/HTTPS nativos para transmissão segura
+
+**🤖 Infraestrutura Gerenciada**
+Sem preocupação com servidores
+
+**📊 Observabilidade**
+Logs em tempo real e monitoramento de erros
+
+---
+
+<!-- _class: lead -->
 
 Link da aplicação: https://muralderecados-production.up.railway.app/
 
