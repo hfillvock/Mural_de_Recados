@@ -2,23 +2,128 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Mural de Recados</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        .recado { border-bottom: 1px solid #ccc; margin-bottom: 10px; padding: 10px; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 30px;
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            box-sizing: border-box;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #888;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .recado {
+            background-color: #1f1f1f;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .recado strong {
+            color: #ffffff;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 20px 0;
+        }
+
+        .alert {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .alert-error {
+            color: #721c24;
+            background-color: #f8d7da;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+        }
+
+        .timestamp {
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
     <h1>Mural de Recados</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
     <form action="/send" method="POST">
-        <input type="text" name="name" placeholder="Seu nome" required><br>
-        <textarea name="message" placeholder="Seu recado" required></textarea><br>
+        <input type="text" name="name" placeholder="Seu nome" required maxlength="100">
+        <textarea name="message" placeholder="Seu recado" required maxlength="2000"></textarea>
         <button type="submit">Enviar</button>
     </form>
+    
     <hr>
-    {% for nome, recado in recados %}
+    
+    {% for nome, recado, data in recados %}
         <div class="recado">
-            <strong>{{ nome }}</strong>: {{ recado }}
+            <strong>{{ nome }}</strong><br>
+            <small style="color:#aaa;">{{ data }}</small><br>
+            {{ recado|safe }}
         </div>
     {% endfor %}
 </body>
